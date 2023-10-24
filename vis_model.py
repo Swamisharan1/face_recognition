@@ -9,17 +9,41 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.keras.optimizers import RMSprop
 from PIL import Image
 from mtcnn.mtcnn import MTCNN
+import requests
+import io
+import gdown
+
+gdrive_url = 'https://drive.google.com/file/d/1fpg2GQvnQZmTS7VzpocS7dKiGmwz0sIv/view?usp=sharing'
+
+# download the dataset from google drive
+@st.cache
+def download_data():
+    gdown.download(gdrive_url, 'img_proc.zip', quiet=False)
+
+download_data()
+
+# Extract the downloaded dataset
+import zipfile
+
+with zipfile.ZipFile('img_proc.zip', 'r') as zip_ref:
+    zip_ref.extractall('dataset')
 
 train = ImageDataGenerator(rescale=1/255)
 validation = ImageDataGenerator(rescale=1/255)
-train_datast = train.flow_from_directory('train',
-                                        target_size = (200,200),
-                                        batch_size = 3,
-                                        class_mode = 'binary')
-validation_datast = train.flow_from_directory('validation',
-                                        target_size = (200,200),
-                                        batch_size = 3,
-                                        class_mode = 'binary')
+
+# Define the path to the training and validation datasets within the extracted repository
+train_data_dir = 'dataset/img_proc/train'
+validation_data_dir = 'dataset/img_proc/validation'
+
+train_datast = train.flow_from_directory(train_data_dir,
+                                        target_size=(200, 200),
+                                        batch_size=3,
+                                        class_mode='binary')
+
+validation_datast = train.flow_from_directory(validation_data_dir,
+                                             target_size=(200, 200),
+                                             batch_size=3,
+                                             class_mode='binary')
 
 
 model = tf.keras.models.Sequential([tf.keras.layers.Conv2D(16,(3,3),activation='relu',input_shape =(200,200,3)),
