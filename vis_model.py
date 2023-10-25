@@ -144,7 +144,7 @@ if img_file_buffer is not None:
                 return fsum
         
             if left_right() == 0:
-                print('no finger is up')
+                st.write('no finger is up')
             elif left_right() == 1:
                 name()
             elif left_right() == 2:
