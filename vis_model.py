@@ -126,7 +126,7 @@ if img_file_buffer is not None:
         img_file_buffer1 = st.camera_input("Take a picture", key="unique_key_1")
 
         # check if an image was captured
-        if img_file_buffer is not None:
+        if img_file_buffer1 is not None:
             # convert the file-like object to PIL image
             img1 = Image.open(img_file_buffer1)
             img_array1 = np.array(img1)  # Convert PIL Image to numpy array
