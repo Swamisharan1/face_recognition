@@ -27,7 +27,7 @@ r = requests.get(url, stream = True)
 # Check if the request is successful
 if r.status_code == 200:
     # Download the file by chunk
-    with open('model.zip', 'wb') as f:
+    with open('trained_model.zip', 'wb') as f:
         for chunk in r.iter_content(chunk_size = 1024):
             if chunk:
                 f.write(chunk)
@@ -35,7 +35,7 @@ else:
     print('Failed to download the model.')
 
 # Extract the downloaded zip file
-with zipfile.ZipFile('model.zip', 'r') as zip_ref:
+with zipfile.ZipFile('trained_model.zip', 'r') as zip_ref:
     zip_ref.extractall('model')
 
 # Now you can load your model
