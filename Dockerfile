@@ -17,4 +17,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8501
 
 # Start your Streamlit app
-CMD ["streamlit", "run", "your_app.py"]
+CMD ["streamlit", "run", "vis_model.py"]
