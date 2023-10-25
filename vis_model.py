@@ -16,7 +16,7 @@ import gdown
 gdrive_url = 'https://drive.google.com/file/d/1fpg2GQvnQZmTS7VzpocS7dKiGmwz0sIv/view?usp=sharing'
 
 # download the dataset from google drive
-@st.cache
+@st.cache_data
 def download_data():
     gdown.download(gdrive_url, 'img_proc.zip', quiet=False)
 
