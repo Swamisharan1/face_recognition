@@ -18,6 +18,7 @@ import os
 import zipfile
 from tensorflow.keras.models import load_model
 
+#model 1
 # URL of the model file
 url = 'https://www.dropbox.com/scl/fi/lllbvh8ql8mmmmhcxasoi/trained_model.zip?rlkey=cjzvolr7jcqhupi5swyurpoj9&dl=1'
 
@@ -40,6 +41,30 @@ with zipfile.ZipFile('trained_model.zip', 'r') as zip_ref:
 
 # Now you can load your model
 model = load_model('model/trained_model')  # replace 'model/trained_model.h5' with the actual path of your .h5 file in the extracted folder
+
+#model 2
+# URL of the model file
+url = 'https://www.dropbox.com/scl/fi/9a3cvir8ns0zlurrtmvmz/trained_model2.zip?rlkey=4pfyra1pjmgb50ktrtssldpjn&dl=1'
+
+# Send a HTTP request to the URL of the file, stream = True means the file will be downloaded as a stream
+r = requests.get(url, stream = True)
+
+# Check if the request is successful
+if r.status_code == 200:
+    # Download the file by chunk
+    with open('trained_model2.zip', 'wb') as f:
+        for chunk in r.iter_content(chunk_size = 1024):
+            if chunk:
+                f.write(chunk)
+else:
+    print('Failed to download the model.')
+
+# Extract the downloaded zip file
+with zipfile.ZipFile('trained_model2.zip', 'r') as zip_ref:
+    zip_ref.extractall('model1')
+
+# Now you can load your model
+model1 = load_model('model1/trained_model2')
 
 # Display the camera input widget
 img_file_buffer = st.camera_input("Take a picture")
@@ -74,15 +99,26 @@ if img_file_buffer is not None:
         x = image.img_to_array(resized_face)
         x = x / 255.0
         x = np.expand_dims(x,axis = 0)
-        val = model.predict(x)
+        images = np.vstack([x])
+        X_test = images
+        # Generate predictions from each model
+        predictions_model1 = model.predict(X_test)
+        predictions_model2 = model1.predict(X_test)
+        #predictions_model3 = new_model3.predict(X_test)
+
+        # Combine predictions using averaging
+        ensemble_predictions = (predictions_model1 + predictions_model2 ) / 2
+
+        # Make binary classification predictions based on a threshold (e.g., 0.5)
+        binary_predictions = (ensemble_predictions >= 0.5).astype(int)
 
 
-    if val == 1:
+    if binary_predictions == 1:
         st.write('swami')
     else:
         st.write('not swami')
     
-    if val == 1:
+    if binary_predictions == 1:
         from cvzone.HandTrackingModule import HandDetector 
         import cv2
         import os
