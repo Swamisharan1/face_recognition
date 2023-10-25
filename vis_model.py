@@ -124,7 +124,7 @@ if img_file_buffer is not None:
         import os
 
         # Capture an image
-        img_file_buffer1 = st.camera_input("Take a picture", key="unique_key_1")
+        img_file_buffer1 = st.camera_input("Take Hand's picture", key="unique_key_1")
 
         # Check if an image was captured
         if img_file_buffer1 is not None:
@@ -207,11 +207,11 @@ if img_file_buffer is not None:
                 add()
             elif left_right() == 3:
                 clas()
-            elif left_right() == 4:
+            elif left_right() == 6:
                 college()
-            elif left_right() == 5:
+            elif left_right() == 4:
                 project()
-            elif left_right() ==6:
+            elif left_right() ==5:
                 project_sum()
             else:
                 print('Gesture can not be recognized')
