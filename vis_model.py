@@ -90,26 +90,26 @@ if img_file_buffer is not None:
         detector = HandDetector()
 
         def name():
-            print('''Displaying information:
+            st.write('''Displaying information:
                     Name:- Swamisharan Kumawat''')
 
         def add():
-            print('''Displaying information:
+            st.write('''Displaying information:
                     Address:-Sant Tukaram Nagar''')
 
         def clas():
-            print('''Displaying information:
+            st.write('''Displaying information:
                     Class:- M.Sc. Data Science''')
 
         def college():
-            print('''Displaying information:
+            st.write('''Displaying information:
                     College:- DPU ACS College''')
 
         def project():
-            print('''Displaying information:
+            st.write('''Displaying information:
                     Project Name:- FaceGesture Identity Access''')
         def project_sum():
-            print('''Displaying information:
+            st.write('''Displaying information:
                     Description: "FaceGesture Identity Access" is a straightforward and inclusive project that
                     integrates facial recognition and hand gestures to provide secure identity verification
                     and efficient access to personalized information. This name explicitly conveys the core features
