@@ -47,8 +47,9 @@ img_file_buffer = st.camera_input("Take a picture")
 # check if an image was captured
 if img_file_buffer is not None:
     # convert the file-like object to PIL image
-    img = Image.open(img_file_buffer)
-    img_array = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+   img = Image.open(img_file_buffer)
+    img_array = np.array(img)  # Convert PIL Image to numpy array
+    img_array = cv2.cvtColor(img_array, cv2.COLOR_BGR2RGB)
     
     img_bgr = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
     def return_face(detector, img_array):
