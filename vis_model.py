@@ -39,7 +39,7 @@ with zipfile.ZipFile('trained_model.zip', 'r') as zip_ref:
     zip_ref.extractall('.')
 
 # Now you can load your model
-model = load_model('trained_model/trained_model.h5')  # replace 'model/trained_model.h5' with the actual path of your .h5 file in the extracted folder
+model = load_model('trained_model.h5')  # replace 'model/trained_model.h5' with the actual path of your .h5 file in the extracted folder
 
 # Display the camera input widget
 img_file_buffer = st.camera_input("Take a picture")
