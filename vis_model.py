@@ -81,7 +81,7 @@ if img_file_buffer is not None:
     else:
         st.write('not swami')
     
-    if val != 1:
+    if val == 1:
         from cvzone.HandTrackingModule import HandDetector 
         import cv2
         import os
