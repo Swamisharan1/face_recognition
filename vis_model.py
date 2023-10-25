@@ -13,62 +13,34 @@ import requests
 import io
 import gdown
 
-gdrive_url = 'https://www.dropbox.com/scl/fi/h5tj3vkmou9brdaqfwsln/img_proc.zip?rlkey=ki66e4lgvt8tgof6hf96u4ijp&dl=1'
-
-# download the dataset from google drive
-@st.cache_data
-def download_data():
-    gdown.download(gdrive_url, 'img_proc.zip', quiet=False)
-
-download_data()
-
-# Extract the downloaded dataset
+import requests
+import os
 import zipfile
+from tensorflow.keras.models import load_model
 
-with zipfile.ZipFile('img_proc.zip', 'r') as zip_ref:
-    zip_ref.extractall('dataset')
+# URL of the model file
+url = 'https://www.dropbox.com/scl/fi/lllbvh8ql8mmmmhcxasoi/trained_model.zip?rlkey=cjzvolr7jcqhupi5swyurpoj9&dl=1'
 
-train = ImageDataGenerator(rescale=1/255)
-validation = ImageDataGenerator(rescale=1/255)
+# Send a HTTP request to the URL of the file, stream = True means the file will be downloaded as a stream
+r = requests.get(url, stream = True)
 
-# Define the path to the training and validation datasets within the extracted repository
-train_data_dir = 'dataset/img_proc/train'
-validation_data_dir = 'dataset/img_proc/validation'
+# Check if the request is successful
+if r.status_code == 200:
+    # Download the file by chunk
+    with open('model.zip', 'wb') as f:
+        for chunk in r.iter_content(chunk_size = 1024):
+            if chunk:
+                f.write(chunk)
+else:
+    print('Failed to download the model.')
 
-train_datast = train.flow_from_directory(train_data_dir,
-                                        target_size=(200, 200),
-                                        batch_size=3,
-                                        class_mode='binary')
+# Extract the downloaded zip file
+with zipfile.ZipFile('model.zip', 'r') as zip_ref:
+    zip_ref.extractall('model')
 
-validation_datast = train.flow_from_directory(validation_data_dir,
-                                             target_size=(200, 200),
-                                             batch_size=3,
-                                             class_mode='binary')
+# Now you can load your model
+model = load_model('model/trained_model.h5')  # replace 'model/trained_model.h5' with the actual path of your .h5 file in the extracted folder
 
-
-model = tf.keras.models.Sequential([tf.keras.layers.Conv2D(16,(3,3),activation='relu',input_shape =(200,200,3)),
-                                   tf.keras.layers.MaxPool2D(2,2),
-                                   #
-                                   tf.keras.layers.Conv2D(32,(3,3),activation = 'relu'),
-                                   tf.keras.layers.MaxPool2D(2,2),
-                                   ##
-                                   tf.keras.layers.Conv2D(64,(3,3),activation = 'relu'),
-                                   tf.keras.layers.MaxPool2D(2,2),
-                                   #
-                                   tf.keras.layers.Flatten(),
-                                   ##
-                                   tf.keras.layers.Dense(512,activation = 'relu'),
-                                   ##
-                                   tf.keras.layers.Dense(1,activation = 'sigmoid')])
-
-model.compile(loss='binary_crossentropy',
-             optimizer = RMSprop(lr=0.001),
-             metrics = ['accuracy'])
-
-
-model.fit = model.fit(train_datast,
-                     epochs = 10,
-                     validation_data = validation_datast)
 # Display the camera input widget
 img_file_buffer = st.camera_input("Take a picture")
 
