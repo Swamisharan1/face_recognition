@@ -13,7 +13,7 @@ import requests
 import io
 import gdown
 
-gdrive_url = 'https://drive.google.com/file/d/1fpg2GQvnQZmTS7VzpocS7dKiGmwz0sIv/view?usp=sharing'
+gdrive_url = 'https://www.dropbox.com/scl/fi/h5tj3vkmou9brdaqfwsln/img_proc.zip?rlkey=ki66e4lgvt8tgof6hf96u4ijp&dl=1'
 
 # download the dataset from google drive
 @st.cache_data
