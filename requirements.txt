@@ -1,5 +1,5 @@
 opencv-python
-tensorflow
+tensorflow-cpu
 streamlit
 matplotlib
 numpy
