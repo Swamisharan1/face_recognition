@@ -78,6 +78,8 @@ if img_file_buffer is not None:
     img = Image.open(img_file_buffer)
     img_array = np.array(img)
 
+    img_bgr = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
+
     def return_face(detector, img_array):
         face = detector.detect_faces(img_array)
         if len(face) != 1:
@@ -143,7 +145,7 @@ if val != 1:
     
 
 
-    handphoto = detector.findHands(img, draw = False)
+    handphoto = detector.findHands(img_bgr, draw = False)
 
     if handphoto:
         a  = len(handphoto[0])
