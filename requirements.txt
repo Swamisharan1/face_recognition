@@ -1,10 +1,9 @@
-opencv-python
+opencv-python-headless
 tensorflow-cpu
 streamlit
 matplotlib
 numpy
 Pillow
-opencv-python-headless
 mtcnn
 cvzone
 requests
