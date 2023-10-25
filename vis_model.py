@@ -123,16 +123,25 @@ if img_file_buffer is not None:
         import cv2
         import os
 
+        # Capture an image
         img_file_buffer1 = st.camera_input("Take a picture", key="unique_key_1")
 
-        # check if an image was captured
+        # Check if an image was captured
         if img_file_buffer1 is not None:
-            # convert the file-like object to PIL image
+            # Convert the file-like object to PIL image
             img1 = Image.open(img_file_buffer1)
             img_array1 = np.array(img1)  # Convert PIL Image to numpy array
-            #img_array = cv2.cvtColor(img_array, cv2.COLOR_BGR2RGB)
-    
-            img_bgr1 = cv2.cvtColor(img_array1, cv2.COLOR_RGB2BGR)
+
+            # Check if img_array1 contains valid image data
+            if img_array1.size != 0:
+            # Convert the image to BGR color space
+                img_bgr1 = cv2.cvtColor(img_array1, cv2.COLOR_RGB2BGR)
+            else:
+                st.write("No valid image data in img_array1")
+        else:
+            st.write("No image captured")
+
+            #img_bgr1 = cv2.cvtColor(img_array1, cv2.COLOR_RGB2BGR)
 
         detector = HandDetector()
 
