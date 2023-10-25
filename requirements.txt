@@ -1,11 +1,11 @@
 opencv-python
 tensorflow
-streamlit==1.8.0
-matplotlib==3.4.3
-numpy==1.21.2
-Pillow==8.3.2
+streamlit
+matplotlib
+numpy
+Pillow
 opencv-python-headless
-mtcnn==0.1.1
-cvzone==1.1.0
+mtcnn
+cvzone
 requests
 gdown
