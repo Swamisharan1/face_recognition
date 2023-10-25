@@ -79,7 +79,6 @@ if img_file_buffer is not None:
     img_array = cv2.cvtColor(img_array, cv2.COLOR_BGR2RGB)
     
     img_bgr = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
-
     def return_face(detector, img_array):
         face = detector.detect_faces(img_array)
         if len(face) != 1:
