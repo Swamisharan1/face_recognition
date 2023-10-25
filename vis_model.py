@@ -132,7 +132,7 @@ if img_file_buffer is not None:
             img_array1 = np.array(img1)  # Convert PIL Image to numpy array
             #img_array = cv2.cvtColor(img_array, cv2.COLOR_BGR2RGB)
     
-            img_bgr1 = cv2.cvtColor(img_array1, cv2.COLOR_RGB2BGR)
+            #img_bgr1 = cv2.cvtColor(img_array1, cv2.COLOR_RGB2BGR)
 
         detector = HandDetector()
 
@@ -166,7 +166,7 @@ if img_file_buffer is not None:
     
 
 
-        handphoto = detector.findHands(img_bgr1, draw = False)
+        handphoto = detector.findHands(img_array1, draw = False)
 
         if handphoto:
             a  = len(handphoto[0])
