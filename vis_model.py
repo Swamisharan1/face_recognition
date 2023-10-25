@@ -49,7 +49,7 @@ if img_file_buffer is not None:
     # convert the file-like object to PIL image
     img = Image.open(img_file_buffer)
     img_array = np.array(img)  # Convert PIL Image to numpy array
-    img_array = cv2.cvtColor(img_array, cv2.COLOR_BGR2RGB)
+    #img_array = cv2.cvtColor(img_array, cv2.COLOR_BGR2RGB)
     
     img_bgr = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
     def return_face(detector, img_array):
@@ -68,12 +68,13 @@ if img_file_buffer is not None:
 
     detector = MTCNN()
     extracted_face = return_face(detector, img_array)
-    if len(extracted_face) > 0:  # If a face was found
+    if len(extracted_face) > 0:
+    # Resize and preprocess face
         resized_face = cv2.resize(extracted_face, (200, 200))
         x = image.img_to_array(resized_face)
         x = x / 255.0
         x = np.expand_dims(x,axis = 0)
-        val = model.predict(x)
+    val = model.predict(x)
 
 
     if val == 1:
