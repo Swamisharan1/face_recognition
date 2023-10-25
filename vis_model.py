@@ -123,7 +123,7 @@ if img_file_buffer is not None:
         import cv2
         import os
 
-        img_file_buffer1 = st.camera_input("Take a picture")
+        img_file_buffer1 = st.camera_input("Take a picture", key="unique_key_1")
 
         # check if an image was captured
         if img_file_buffer is not None:
