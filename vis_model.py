@@ -146,25 +146,31 @@ if img_file_buffer is not None:
         detector = HandDetector()
 
         def name():
+            st.write('One Finger Up')
             st.write('''Displaying information:
-                    Name:- Swamisharan Kumawat''')
+                     Name:- Swamisharan Kumawat''')
 
         def add():
+            st.write('Two Fingers Up')
             st.write('''Displaying information:
                     Address:-Sant Tukaram Nagar''')
 
         def clas():
+            st.write('Three Fingers Up')
             st.write('''Displaying information:
                     Class:- M.Sc. Data Science''')
 
         def college():
+            st.write('Six Fingers Up')
             st.write('''Displaying information:
                     College:- DPU ACS College''')
 
         def project():
+            st.write('Four Fingers Up')
             st.write('''Displaying information:
                     Project Name:- FaceGesture Identity Access''')
         def project_sum():
+            st.write('Five Fingers Up')
             st.write('''Displaying information:
                     Description: "FaceGesture Identity Access" is a straightforward and inclusive project that
                     integrates facial recognition and hand gestures to provide secure identity verification
