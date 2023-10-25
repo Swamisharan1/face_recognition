@@ -1,6 +1,5 @@
 opencv-python
-tensorflow==2.7.0
-tensorflow-cpu==2.5.0
+tensorflow
 streamlit==1.8.0
 matplotlib==3.4.3
 numpy==1.21.2
