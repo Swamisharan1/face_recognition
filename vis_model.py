@@ -76,7 +76,7 @@ img_file_buffer = st.camera_input("Take a picture")
 if img_file_buffer is not None:
     # convert the file-like object to PIL image
     img = Image.open(img_file_buffer)
-     img_array = cv2.cvtColor(img_array, cv2.COLOR_BGR2RGB)
+    img_array = cv2.cvtColor(img_array, cv2.COLOR_BGR2RGB)
     
     img_bgr = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
 
