@@ -31,3 +31,6 @@ pip install -r requirements.txt
 ```bash
 streamlit run app.py
 ```
+
+## Usage
+After running the application, you’ll be prompted to allow access to your camera. The application will then capture images in real-time and use the trained CNN models to identify faces and classify hand gestures.
