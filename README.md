@@ -23,9 +23,11 @@ git clone https://github.com/Swamisharan1/face_recognition.git
 ```
 
 ## Install the dependencies
-```pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
 ```
 
 ## Run the application
-```streamlit run app.py
+```bash
+streamlit run app.py
 ```
