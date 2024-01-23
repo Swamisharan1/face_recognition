@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 ## Run the application
 ```bash
-streamlit run app.py
+streamlit run vis_model.py
 ```
 
 ## Usage
